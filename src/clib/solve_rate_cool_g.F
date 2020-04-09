@@ -619,6 +619,9 @@ c      chunit = (7.17775e-12_DKIND)/(2._DKIND*uvel*uvel*mh)   ! 4.5 eV per H2 fo
                 heq = (-1._DKIND / (4._DKIND*k22(i))) * (k13(i)-
      &               sqrt(8._DKIND*k13(i)*k22(i)*
      &               fh*d(i,j,k)+k13(i)**2._DKIND))
+                if (heq.lt.0._DKIND) then
+                    heq = (heq1+heq2)/2._DKIND
+                endif
                 !write(0,*) heq2, heq1, eqt2, eqt1, tgas(i), p2d(i), 
 !     &                     edot(i)
                 if (d(i,j,k)*dom.gt.1e18_DKIND.and.i.eq.4) then
